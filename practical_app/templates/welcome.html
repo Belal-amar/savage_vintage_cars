@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Savage Vintage, {{logged.first_name}}</h1>
+        <a href="logout">Log Out</a>
+    </header>
+    <a href="{% url 'new' %}" class="post">+ Post a car for sale</a>
+    <div class="cars">
+        <h1>All Whalesale Car Deals</h1>
+        <div>
+            <table border="10">
+                <tr>
+                    <th>id</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Dealer</th>
+                    <th>Actions</th>
+                    <th>Status</th>
+                  </tr>
+                {% for car in cars %} 
+                <tr>
+                    <th>{{car.id}}</th>
+                    <th>{{car.model}}</th>
+                    <th>{{car.year}}</th> 
+                    <th >{{car.dealer_id.first_name}}</th>
+                    {% if logged.id == car.dealer_id.id %} 
+                    <th><a href="{% url 'edit' car.id %}">Edit</a> |  <a href="{% url 'delete' car.id %}">remove</a> </th>
+                    {% else %}
+                    <th><a href="{% url 'view' car.id %}">View</a> </th>
+                    {% endif %}
+                    <th>{{car.status}}</th>
+                {% endfor %}
+                </tr>
+            </table>
+        </div><br>
+    </div>
+    <table>
+       
+   
+    
+</body>
+</html>

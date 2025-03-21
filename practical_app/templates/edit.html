@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style3.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Post a Car for Sale</h1>
+        <a href="{% url 'logout' %}">Logout</a>
+    </header>
+    <a href="{% url 'cancel' %}" class="cancel">Cancel</a>
+    <div >
+        <form action="{% url 'edit' car.id %}" method="post" class="form-1">
+            {% csrf_token %}
+            <label>Price</label>
+            <input type="number" name="price1" value="{{car.price}}"  required>
+            <label>Model</label>
+            <input type="text" name="model" required>
+            <label>Make</label>
+            <input type="text" name="make" required>
+            <label>Year</label>
+            <input type="number" name="year" required>
+            <label>Seller Contact</label>
+            <input type="text" name="seller_con" required>
+            <label>Description</label>
+            <input type="text" name="desc" required> 
+            <button type="submit">Submit</button>
+            <input type="hidden" name="dealer_id" value="{{logged.id}}">
+        </form>
+        
+    </div>
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

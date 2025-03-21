@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <header>
+        <a href="{% url 'cars' %}"> Back to Deals</a>
+        <a href="{% url 'logout' %}"> Logout</a>
+    </header>
+    <div class="info">
+        <h3>$$${{car.price}}</h3>
+        <h3>Model:{{car.model}}</h3>
+        <p>Make:{{car.make}}</p>
+        <p>Year:{{car.year}}</p>
+        <p>Description:</p>
+        <p>{{car.desc}}</p><br><br>
+        <p><strong>Seller:{{car.dealer_id.first_name}}   {{car.dealer_id.last_name}}</strong></p>
+        <button ><a href="" class="order">Order</a></button>
+    </div>
+
+</body>
+</html>
